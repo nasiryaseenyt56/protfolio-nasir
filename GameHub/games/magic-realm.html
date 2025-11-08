@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Realm</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(ellipse at center, #2d1b69 0%, #0f0c29 50%, #000000 100%);
+            font-family: 'Cinzel', 'Georgia', serif;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Enhanced magical particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: magicalFloat 8s ease-in-out infinite;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(138, 43, 226, 0.1) 50%, transparent 70%);
+            animation: mysticAura 6s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        
+        @keyframes magicalFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            33% { transform: translateY(-10px) rotate(1deg); opacity: 1; }
+            66% { transform: translateY(5px) rotate(-1deg); opacity: 0.8; }
+        }
+        
+        @keyframes mysticAura {
+            0% { opacity: 0.1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(1.02); }
+        }
+        
+        canvas {
+            border: 6px solid transparent;
+            background: 
+                linear-gradient(135deg, #1a0033, #2d1b69, #4a148c, #6a1b9a),
+                linear-gradient(45deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.3));
+            background-blend-mode: overlay;
+            box-shadow: 
+                0 0 50px rgba(138, 43, 226, 0.8),
+                inset 0 0 30px rgba(75, 0, 130, 0.3),
+                0 0 100px rgba(138, 43, 226, 0.4);
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .magic-hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: 
+                linear-gradient(135deg, rgba(26, 0, 51, 0.95), rgba(45, 27, 105, 0.9)),
+                radial-gradient(circle at top left, rgba(138, 43, 226, 0.2), transparent);
+            backdrop-filter: blur(15px) saturate(1.5);
+            padding: 25px;
+            border-radius: 20px;
+            border: 3px solid rgba(138, 43, 226, 0.6);
+            box-shadow: 
+                0 0 40px rgba(138, 43, 226, 0.6),
+                inset 0 0 20px rgba(138, 43, 226, 0.1),
+                0 8px 32px rgba(0, 0, 0, 0.3);
+            color: #e0aaff;
+            font-weight: bold;
+            min-width: 220px;
+        }
+        
+        .hud-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 12px 0;
+            padding: 8px 12px;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .hud-item:hover {
+            background: rgba(138, 43, 226, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .hud-item span {
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+        
+        .spell-book {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: 
+                linear-gradient(135deg, rgba(26, 0, 51, 0.95), rgba(45, 27, 105, 0.9)),
+                radial-gradient(circle at bottom right, rgba(138, 43, 226, 0.2), transparent);
+            backdrop-filter: blur(15px) saturate(1.5);
+            padding: 20px;
+            border-radius: 20px;
+            border: 3px solid rgba(138, 43, 226, 0.6);
+            box-shadow: 
+                0 0 40px rgba(138, 43, 226, 0.6),
+                inset 0 0 20px rgba(138, 43, 226, 0.1),
+                0 8px 32px rgba(0, 0, 0, 0.3);
+            color: #e0aaff;
+            min-width: 220px;
+        }
+        
+        .spell {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+            padding: 12px 15px;
+            background: 
+                linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.3)),
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent);
+            border-radius: 12px;
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .spell::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .spell:hover::before {
+            left: 100%;
+        }
+        
+        .spell:hover {
+            background: 
+                linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(75, 0, 130, 0.5)),
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(36, 0, 70, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #9d4edd;
+            color: #e0aaff;
+            font-size: 14px;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #7209b7, #9d4edd);
+            color: white;
+            border: 2px solid #9d4edd;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+            text-transform: uppercase;
+            z-index: 100;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.4);
+        }
+        
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(36, 0, 70, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #9d4edd;
+            box-shadow: 0 0 50px rgba(157, 78, 221, 0.5);
+            text-align: center;
+            color: #e0aaff;
+            display: none;
+            min-width: 300px;
+        }
+        .game-over h2 {
+            font-size: 2.5rem;
+            margin: 0 0 20px 0;
+            text-shadow: 0 0 20px rgba(157, 78, 221, 0.8);
+            animation: magicGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes magicGlow {
+            from { text-shadow: 0 0 20px rgba(157, 78, 221, 0.8); }
+            to { text-shadow: 0 0 30px rgba(157, 78, 221, 1); }
+        }
+        .game-over button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: linear-gradient(45deg, #7209b7, #9d4edd);
+            color: white;
+            border: 2px solid #9d4edd;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+        }
+        .game-over button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(157, 78, 221, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div class="magic-hud">
+            <div class="hud-item">🧙‍♂️ Level: <span id="level">1</span></div>
+            <div class="hud-item">⚡ Mana: <span id="mana">100</span></div>
+            <div class="hud-item">🏆 Score: <span id="score">0</span></div>
+            <div class="hud-item">💎 Crystals: <span id="crystals">0</span></div>
+        </div>
+        
+        <div class="spell-book">
+            <div style="color: #8a2be2; font-weight: bold; margin-bottom: 15px; text-align: center; font-size: 18px; text-shadow: 0 0 10px rgba(138, 43, 226, 0.8); border-bottom: 2px solid rgba(138, 43, 226, 0.5); padding-bottom: 8px;">📜 GRIMOIRE OF POWER</div>
+            <div class="spell" onclick="castSpell('fireball')">🔥 Fireball <span>F</span></div>
+            <div class="spell" onclick="castSpell('lightning')">⚡ Lightning <span>L</span></div>
+            <div class="spell" onclick="castSpell('heal')">💚 Heal <span>H</span></div>
+            <div class="spell" onclick="castSpell('shield')">🛡️ Shield <span>S</span></div>
+        </div>
+        
+        <div class="controls">
+            <div style="color: #9d4edd; font-weight: bold; margin-bottom: 8px;">🔮 CONTROLS:</div>
+            <div>🔼 W/↑ - Move Up</div>
+            <div>🔽 S/↓ - Move Down</div>
+            <div>◀️ A/← - Move Left</div>
+            <div>▶️ D/→ - Move Right</div>
+            <div>🔥 F - Fireball</div>
+            <div>⚡ L - Lightning</div>
+        </div>
+        
+        <button class="back-btn" onclick="window.location.href='../index.html'">← Back to GameHub</button>
+        
+        <div class="game-over" id="gameOver">
+            <h2>🔮 QUEST COMPLETE! 🔮</h2>
+            <p>Final Level: <span id="finalLevel" style="color: #fff; font-weight: bold;">1</span></p>
+            <p>Score: <span id="finalScore" style="color: #fff; font-weight: bold;">0</span></p>
+            <p>Crystals Collected: <span id="finalCrystals" style="color: #fff; font-weight: bold;">0</span></p>
+            <button onclick="restartGame()">🔄 New Quest</button>
+            <button onclick="window.location.href='../index.html'">🏠 Main Menu</button>
+        </div>
+    </div>
+    
+    <script src="../js/magic-realm.js"></script>
+<script src="../js/navigation.js"></script></body>
+</html>

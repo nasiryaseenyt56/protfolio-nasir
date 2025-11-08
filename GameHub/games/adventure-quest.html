@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Quest</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .game-screen {
+            background: rgba(0,0,0,0.7);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .player-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .inventory {
+            background: rgba(0,0,0,0.5);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .class-selection {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .class-btn {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .class-btn:hover {
+            background: #8e44ad;
+        }
+        .stat {
+            text-align: center;
+        }
+        .story-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .choice-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .choice-btn:hover {
+            background: #ff5252;
+        }
+        .back-btn {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+        .game-over {
+            background: rgba(255,0,0,0.2);
+            border: 2px solid #ff6b6b;
+        }
+        .victory {
+            background: rgba(0,255,0,0.2);
+            border: 2px solid #4ecdc4;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>🗡️ Adventure Quest</h1>
+        
+        <div class="player-stats">
+            <div class="stat">
+                <div>❤️ Health</div>
+                <div id="health">100</div>
+            </div>
+            <div class="stat">
+                <div>⚔️ Attack</div>
+                <div id="attack">10</div>
+            </div>
+            <div class="stat">
+                <div>🛡️ Defense</div>
+                <div id="defense">5</div>
+            </div>
+            <div class="stat">
+                <div>✨ Mana</div>
+                <div id="mana">50</div>
+            </div>
+            <div class="stat">
+                <div>🏆 Score</div>
+                <div id="score">0</div>
+            </div>
+            <div class="stat">
+                <div>💰 Gold</div>
+                <div id="gold">0</div>
+            </div>
+        </div>
+        
+        <div class="inventory">
+            <h3>🎒 Inventory</h3>
+            <div id="inventory">Empty</div>
+        </div>
+
+        <div class="game-screen" id="gameScreen">
+            <div class="story-text" id="storyText">
+                Welcome, brave adventurer! You stand at the entrance of a mysterious dungeon. 
+                Legend speaks of great treasures within, but also of terrible dangers...
+            </div>
+            
+            <div class="choices" id="choices">
+                <button class="choice-btn" onclick="makeChoice('enter')">Enter the dungeon</button>
+                <button class="choice-btn" onclick="makeChoice('leave')">Walk away</button>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="window.location.href='../index.html'">← Back to GameHub</button>
+    </div>
+
+    <script src="../js/adventure-quest.js"></script>
+<script src="../js/navigation.js"></script></body>
+</html>

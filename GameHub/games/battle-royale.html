@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Royale</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 2px solid #e74c3c;
+            background: linear-gradient(45deg, #27ae60, #2ecc71, #f39c12, #e67e22);
+        }
+        .game-ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 18px;
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .minimap {
+            position: absolute;
+            top: 20px;
+            right: 80px;
+            width: 150px;
+            height: 120px;
+            background: rgba(0,0,0,0.8);
+            border: 2px solid #e74c3c;
+            border-radius: 5px;
+        }
+        .weapon-ui {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            display: none;
+            background: rgba(0,0,0,0.8);
+            padding: 30px;
+            border-radius: 15px;
+        }
+        .game-over button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 200px;
+            padding: 10px 15px;
+            background: rgba(231,76,60,0.8);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" onclick="window.location.href='../index.html'">← Back to GameHub</button>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div class="game-ui">
+        <div>🏆 Players Left: <span id="playersLeft">10</span></div>
+        <div>💥 Eliminations: <span id="eliminations">0</span></div>
+        <div>⚡ Zone Closing: <span id="zoneTimer">60</span>s</div>
+        <div>❤️ Health: <span id="health">100</span></div>
+        <div>🎯 Accuracy: <span id="accuracy">0</span>%</div>
+    </div>
+    <canvas class="minimap" id="minimap" width="150" height="120"></canvas>
+    <div class="weapon-ui">
+        <div>🔫 <span id="weaponName">Assault Rifle</span></div>
+        <div>📦 Ammo: <span id="ammo">30</span>/90</div>
+    </div>
+    <div class="game-over" id="gameOver">
+        <h2 id="gameResult">Victory Royale!</h2>
+        <p>Eliminations: <span id="finalEliminations">0</span></p>
+        <p>Placement: <span id="placement">#1</span></p>
+        <button onclick="restartGame()">Play Again</button>
+        <button class="back-btn" onclick="window.location.href='../index.html'">← Back to GameHub</button>
+    </div>
+    <script src="../js/battle-royale.js"></script>
+<script src="../js/navigation.js"></script></body>
+</html>

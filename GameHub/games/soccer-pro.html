@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Pro - Ultimate Football Experience</title>
+    <link rel="stylesheet" href="soccer-pro.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">⚽</span>
+                <span class="logo-text">Soccer Pro</span>
+            </div>
+            <div class="nav-controls">
+                    <button class="back-btn" onclick="window.location.href='../index.html'">← Back to GameHub</button>
+                <div class="score-display">Score: <span id="score">0</span></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="game-container">
+        <div class="field-container">
+            <div class="soccer-field">
+                <div class="field-lines">
+                    <div class="center-circle"></div>
+                    <div class="penalty-area left"></div>
+                    <div class="penalty-area right"></div>
+                    <div class="goal left-goal"></div>
+                    <div class="goal right-goal"></div>
+                </div>
+                
+                <div class="ball" id="ball">⚽</div>
+                <div class="player" id="player">🏃‍♂️</div>
+                
+                <div class="opponents">
+                    <div class="opponent" id="opponent1">🏃‍♂️</div>
+                    <div class="opponent" id="opponent2">🏃‍♂️</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <div class="control-section">
+                <h3>Controls</h3>
+                <div class="controls-grid">
+                    <button class="control-btn" id="moveUp">↑</button>
+                    <button class="control-btn" id="moveLeft">←</button>
+                    <button class="control-btn" id="kick">KICK</button>
+                    <button class="control-btn" id="moveRight">→</button>
+                    <button class="control-btn" id="moveDown">↓</button>
+                </div>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">Goals:</span>
+                    <span class="stat-value" id="goals">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Time:</span>
+                    <span class="stat-value" id="timer">0:00</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Level:</span>
+                    <span class="stat-value" id="level">1</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-actions">
+            <button class="action-btn start-btn" id="startGame">Start Game</button>
+            <button class="action-btn pause-btn" id="pauseGame" disabled>Pause</button>
+            <button class="action-btn reset-btn" id="resetGame">Reset</button>
+        </div>
+    </main>
+
+    <script src="../js/soccer-pro.js"></script>
+<script src="../js/navigation.js"></script></body>
+</html>

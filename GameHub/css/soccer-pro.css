@@ -1,0 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #2E8B57, #228B22);
+    min-height: 100vh;
+    color: white;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.back-btn {
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.back-btn:hover {
+    background: #e55a2b;
+}
+
+.score-display {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.game-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.field-container {
+    background: #228B22;
+    border: 4px solid white;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.soccer-field {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    background: linear-gradient(90deg, #32CD32 0%, #228B22 50%, #32CD32 100%);
+}
+
+.field-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.center-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.center-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -2px;
+    width: 4px;
+    height: 100%;
+    background: white;
+    transform: translateY(-50%);
+}
+
+.penalty-area {
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    border: 2px solid white;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.penalty-area.left {
+    left: 0;
+    border-left: none;
+}
+
+.penalty-area.right {
+    right: 0;
+    border-right: none;
+}
+
+.goal {
+    position: absolute;
+    width: 20px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid white;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.goal.left-goal {
+    left: -20px;
+    border-right: none;
+}
+
+.goal.right-goal {
+    right: -20px;
+    border-left: none;
+}
+
+.ball {
+    position: absolute;
+    font-size: 1.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.player {
+    position: absolute;
+    font-size: 2rem;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+.opponent {
+    position: absolute;
+    font-size: 1.8rem;
+    transition: all 0.5s ease;
+    z-index: 5;
+    filter: hue-rotate(180deg);
+}
+
+#opponent1 {
+    top: 30%;
+    right: 30%;
+}
+
+#opponent2 {
+    top: 70%;
+    right: 25%;
+}
+
+.game-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.control-section h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #FFD700;
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+#moveUp {
+    grid-column: 2;
+}
+
+#moveLeft {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#kick {
+    grid-column: 2;
+    grid-row: 2;
+    background: #ff6b35;
+    border-color: #ff6b35;
+}
+
+#kick:hover {
+    background: #e55a2b;
+}
+
+#moveRight {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#moveDown {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.game-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.8rem;
+    border-radius: 8px;
+    border-left: 4px solid #FFD700;
+}
+
+.stat-label {
+    font-weight: bold;
+}
+
+.stat-value {
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.game-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.action-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.action-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.action-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.start-btn {
+    background: #4CAF50;
+}
+
+.pause-btn {
+    background: #ff9800;
+}
+
+.reset-btn {
+    background: #f44336;
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 1rem;
+    }
+    
+    .game-controls {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .soccer-field {
+        height: 300px;
+    }
+    
+    .game-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}

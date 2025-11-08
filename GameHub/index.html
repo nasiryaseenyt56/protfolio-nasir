@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - Play Amazing Games</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body><a href="../../index.html" style="position:fixed;top:20px;right:20px;z-index:9999;background:linear-gradient(135deg,#6366f1,#4f46e5);color:white;padding:12px 20px;border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;box-shadow:0 4px 15px rgba(99,102,241,0.3);transition:all 0.3s ease;display:flex;align-items:center;gap:8px">? Back to Portfolio</a>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top">↑</button>
+    
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">GameHub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#leaderboard">Leaderboard</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" onclick="showLogin()">Login</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to GameHub</h1>
+                <p>Discover and play amazing games with friends worldwide</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">5K+</span>
+                        <span class="stat-label">Active Players</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">9</span>
+                        <span class="stat-label">Games Available</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Free to Play</span>
+                    </div>
+                </div>
+                <button class="cta-btn">Start Playing</button>
+            </div>
+            <div class="hero-decoration">
+                <div class="floating-icon">🎮</div>
+                <div class="floating-icon">🏆</div>
+                <div class="floating-icon">⭐</div>
+            </div>
+        </section>
+
+        <section id="games" class="games-section">
+            <h2>🎮 Featured Games</h2>
+            <p class="games-subtitle">Discover amazing games crafted for endless entertainment</p>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-badge">Available</div>
+                    <div class="game-image adventure-quest">⚔️</div>
+                    <div class="game-content">
+                        <h3>Adventure Quest</h3>
+                        <p>Epic fantasy adventure</p>
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3.2K</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">RPG</div>
+                                <div class="stat-label">Genre</div>
+                            </div>
+                        </div>
+                        <button class="play-btn" onclick="window.location.href='games/adventure-quest.html'">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-badge">Popular</div>
+                    <div class="game-image space-shooter">🚀</div>
+                    <div class="game-content">
+                        <h3>Space Shooter</h3>
+                        <p>Action-packed space battles against alien invaders</p>
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3.2K</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">Action</div>
+                                <div class="stat-label">Genre</div>
+                            </div>
+                        </div>
+                        <button class="play-btn" onclick="window.location.href='games/space-shooter.html'">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-badge">Available</div>
+                    <div class="game-image puzzle-master">🧩</div>
+                    <div class="game-content">
+                        <h3>Puzzle Master</h3>
+                        <p>Mind-bending puzzles</p>
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3.2K</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">Puzzle</div>
+                                <div class="stat-label">Genre</div>
+                            </div>
+                        </div>
+                        <button class="play-btn" onclick="window.location.href='games/puzzle-master.html'">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-badge">Available</div>
+                    <div class="game-image racing-thunder">🏎️</div>
+                    <div class="game-content">
+                        <h3>Racing Thunder</h3>
+                        <p>High-speed racing action</p>
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3.2K</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">Racing</div>
+                                <div class="stat-label">Genre</div>
+                            </div>
+                        </div>
+                        <button class="play-btn" onclick="window.location.href='games/racing-thunder.html'">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-badge">Available</div>
+                    <div class="game-image magic-realm">🔮</div>
+                    <div class="game-content">
+                        <h3>Magic Realm</h3>
+                        <p>Mystical world of wizards</p>
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3.2K</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">Fantasy</div>
+                                <div class="stat-label">Genre</div>
+                            </div>
+                        </div>
+                        <button class="play-btn" onclick="window.location.href='games/magic-realm.html'">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-badge">Available</div>
+                    <div class="game-image soccer-pro">⚽</div>
+                    <div class="game-content">
+                        <h3>Soccer Pro</h3>
+                        <p>Ultimate football experience</p>
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3.2K</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">Sports</div>
+                                <div class="stat-label">Genre</div>
+                            </div>
+                        </div>
+                        <button class="play-btn" onclick="window.location.href='games/soccer-pro.html'">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-badge">Available</div>
+                    <div class="game-image cooking-master">👨🍳</div>
+                    <div class="game-content">
+                        <h3>Cooking Master</h3>
+                        <p>Create delicious recipes</p>
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">3.2K</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">Simulation</div>
+                                <div class="stat-label">Genre</div>
+                            </div>
+                        </div>
+                        <button class="play-btn" onclick="window.location.href='games/cooking-master.html'">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-badge">New</div>
+                    <div class="game-image ocean-explorer">🌊</div>
+                    <div class="game-content">
+                        <h3>Ocean Explorer</h3>
+                        <p>Dive deep into underwater adventures and treasures</p>
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4.6</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">2.5K</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">Adventure</div>
+                                <div class="stat-label">Genre</div>
+                            </div>
+                        </div>
+                        <button class="play-btn" onclick="window.location.href='games/ocean-explorer.html'">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-badge">Hot</div>
+                    <div class="game-image battle-royale">💥</div>
+                    <div class="game-content">
+                        <h3>Battle Royale</h3>
+                        <p>Last player standing wins in this intense combat game</p>
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">4.1K</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">Battle</div>
+                                <div class="stat-label">Genre</div>
+                            </div>
+                        </div>
+                        <button class="play-btn" onclick="window.location.href='games/battle-royale.html'">Play Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="leaderboard" class="leaderboard">
+            <h2>🏆 Global Leaderboard</h2>
+            <div class="leaderboard-tabs">
+                <button class="tab-btn active" data-tab="overall">Overall</button>
+                <button class="tab-btn" data-tab="weekly">This Week</button>
+                <button class="tab-btn" data-tab="monthly">This Month</button>
+            </div>
+            <div class="leaderboard-list">
+                <div class="podium">
+                    <div class="podium-place second">
+                        <div class="player-avatar">🎯</div>
+                        <div class="player-name">GameMaster</div>
+                        <div class="player-score">12,890</div>
+                        <div class="podium-rank">2</div>
+                    </div>
+                    <div class="podium-place first">
+                        <div class="crown">👑</div>
+                        <div class="player-avatar">🏆</div>
+                        <div class="player-name">NasirYaseen</div>
+                        <div class="player-score">18,420</div>
+                        <div class="podium-rank">1</div>
+                    </div>
+                    <div class="podium-place third">
+                        <div class="player-avatar">⚡</div>
+                        <div class="player-name">ProGamer</div>
+                        <div class="player-score">11,750</div>
+                        <div class="podium-rank">3</div>
+                    </div>
+                </div>
+                <div class="remaining-ranks">
+                    <div class="player-rank">
+                        <span class="rank-number">4</span>
+                        <div class="player-info">
+                            <span class="player-avatar">🎮</span>
+                            <div class="player-details">
+                                <span class="player-name">EliteGamer</span>
+                                <span class="player-stats">Level 35 • 127 Wins</span>
+                            </div>
+                        </div>
+                        <span class="score">10,200</span>
+                    </div>
+                    <div class="player-rank">
+                        <span class="rank-number">5</span>
+                        <div class="player-info">
+                            <span class="player-avatar">🔥</span>
+                            <div class="player-details">
+                                <span class="player-name">SpeedRunner</span>
+                                <span class="player-stats">Level 32 • 98 Wins</span>
+                            </div>
+                        </div>
+                        <span class="score">9,850</span>
+                    </div>
+                    <div class="player-rank">
+                        <span class="rank-number">6</span>
+                        <div class="player-info">
+                            <span class="player-avatar">🌟</span>
+                            <div class="player-details">
+                                <span class="player-name">StarPlayer</span>
+                                <span class="player-stats">Level 29 • 76 Wins</span>
+                            </div>
+                        </div>
+                        <span class="score">8,920</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="contact-container">
+                <h2>Contact Us</h2>
+                <p>Get in touch with the GameHub team</p>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:nasiryaseen2011@gmail.com">nasiryaseen2011@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <h4>Phone</h4>
+                                <p><a href="tel:+923060217933">03060217933</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🌐</span>
+                            <div>
+                                <h4>Social Media</h4>
+                                <p>Follow @GameHubOfficial</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="4" required></textarea>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="loginModal" class="login-modal">
+        <div class="login-content">
+            <span class="close" onclick="closeLogin()">&times;</span>
+            <h2>Login to GameHub</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="showRegister()">Sign up</a></p>
+        </div>
+    </div>
+    
+    <div id="registerModal" class="login-modal">
+        <div class="login-content">
+            <span class="close" onclick="closeRegister()">&times;</span>
+            <h2>Create Account</h2>
+            <form id="registerForm">
+                <input type="text" id="regUsername" placeholder="Username" required>
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="password" id="regPassword" placeholder="Password" required>
+                <button type="submit">Create Account</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+        </div>
+    </div>
+    
+    <div id="profileModal" class="login-modal">
+        <div class="login-content profile-content">
+            <span class="close" onclick="closeProfile()">&times;</span>
+            <div class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <h2 id="profileUsername">Username</h2>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-box">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Games Played</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Wins</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2,450</div>
+                    <div class="stat-label">High Score</div>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="profile-btn" onclick="showSettings()">Settings</button>
+                <button class="profile-btn logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="settingsModal" class="login-modal">
+        <div class="login-content settings-content">
+            <span class="close" onclick="closeSettings()">&times;</span>
+            <h2>⚙️ Settings</h2>
+            <div class="settings-section">
+                <div class="section-header">
+                    <span class="section-icon">🎨</span>
+                    <h3>Appearance</h3>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="themeSelect">Theme</label>
+                        <span class="setting-desc">Choose your preferred color scheme</span>
+                    </div>
+                    <select id="themeSelect" class="modern-select">
+                        <option value="dark">🌙 Dark Mode</option>
+                        <option value="light">☀️ Light Mode</option>
+                        <option value="auto">🌍 Auto</option>
+                    </select>
+                </div>
+            </div>
+            <div class="settings-section">
+                <div class="section-header">
+                    <span class="section-icon">🔊</span>
+                    <h3>Audio</h3>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="soundToggle">Sound Effects</label>
+                        <span class="setting-desc">Enable game sound effects</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="soundToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="settings-section">
+                <div class="section-header">
+                    <span class="section-icon">🔔</span>
+                    <h3>Notifications</h3>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <label for="notificationToggle">Push Notifications</label>
+                        <span class="setting-desc">Receive game updates and alerts</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="notificationToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="settings-actions">
+                <button class="profile-btn" onclick="saveSettings()">Save Changes</button>
+                <button class="profile-btn logout-btn" onclick="closeSettings()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 GameHub. All rights reserved.</p>
+    </footer>
+    <script>
+        document.querySelector('.cta-btn').addEventListener('click', () => {
+            document.getElementById('games').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+                navLinks.classList.remove('active');
+                mobileToggle.classList.remove('active');
+            });
+        });
+
+        // Contact form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = e.target.querySelector('input[type="text"]').value;
+            const email = e.target.querySelector('input[type="email"]').value;
+            const message = e.target.querySelector('textarea').value;
+            
+            if (name && email && message) {
+                console.log('Contact Form Submission:', { name, email, message });
+                alert('Thank you for your message! We\'ll get back to you soon.');
+                e.target.reset();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        // Leaderboard tabs functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const tab = btn.dataset.tab;
+                if (tab === 'weekly') {
+                    document.querySelector('.podium-place.first .player-name').textContent = 'GameMaster';
+                    document.querySelector('.podium-place.first .player-score').textContent = '2,890';
+                } else if (tab === 'monthly') {
+                    document.querySelector('.podium-place.first .player-name').textContent = 'ProGamer';
+                    document.querySelector('.podium-place.first .player-score').textContent = '8,750';
+                } else {
+                    document.querySelector('.podium-place.first .player-name').textContent = 'NasirYaseen';
+                    document.querySelector('.podium-place.first .player-score').textContent = '18,420';
+                }
+            });
+        });
+
+        // Login system
+        function showLogin() {
+            document.getElementById('loginModal').style.display = 'block';
+            document.getElementById('registerModal').style.display = 'none';
+        }
+        
+        function showRegister() {
+            document.getElementById('registerModal').style.display = 'block';
+            document.getElementById('loginModal').style.display = 'none';
+        }
+        
+        function closeLogin() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+        
+        function closeRegister() {
+            document.getElementById('registerModal').style.display = 'none';
+        }
+        
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+                localStorage.setItem('loggedIn', 'true');
+                localStorage.setItem('currentUser', username);
+                alert('Login successful! Welcome ' + username);
+                closeLogin();
+                updateNavigation();
+            }
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            
+            if (username && email && password) {
+                alert('Account created successfully! Please login.');
+                closeRegister();
+                showLogin();
+            }
+        });
+        
+        function showProfile() {
+            const currentUser = localStorage.getItem('currentUser');
+            document.getElementById('profileModal').style.display = 'block';
+            document.getElementById('profileUsername').textContent = currentUser;
+        }
+        
+        function closeProfile() {
+            document.getElementById('profileModal').style.display = 'none';
+        }
+        
+        function showSettings() {
+            document.getElementById('settingsModal').style.display = 'block';
+            document.getElementById('profileModal').style.display = 'none';
+            loadSettings();
+        }
+        
+        function closeSettings() {
+            document.getElementById('settingsModal').style.display = 'none';
+        }
+        
+        function saveSettings() {
+            const theme = document.getElementById('themeSelect').value;
+            const sound = document.getElementById('soundToggle').checked;
+            const notifications = document.getElementById('notificationToggle').checked;
+            
+            localStorage.setItem('theme', theme);
+            localStorage.setItem('sound', sound);
+            localStorage.setItem('notifications', notifications);
+            
+            // Apply theme immediately
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+            } else {
+                document.body.classList.remove('dark-theme');
+            }
+            
+            alert('Settings saved successfully!');
+            closeSettings();
+        }
+        
+        function loadSettings() {
+            const theme = localStorage.getItem('theme') || 'dark';
+            const sound = localStorage.getItem('sound') !== 'false';
+            const notifications = localStorage.getItem('notifications') !== 'false';
+            
+            document.getElementById('themeSelect').value = theme;
+            document.getElementById('soundToggle').checked = sound;
+            document.getElementById('notificationToggle').checked = notifications;
+            
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+        }
+        
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('currentUser');
+            closeProfile();
+            updateNavigation();
+            alert('Logged out successfully!');
+        }
+        
+        function updateNavigation() {
+            const isLoggedIn = localStorage.getItem('loggedIn');
+            const currentUser = localStorage.getItem('currentUser');
+            const loginLink = document.querySelector('.nav-links li:last-child a');
+            
+            if (isLoggedIn) {
+                loginLink.textContent = currentUser;
+                loginLink.onclick = showProfile;
+            } else {
+                loginLink.textContent = 'Login';
+                loginLink.onclick = showLogin;
+            }
+        }
+        
+        // Check login status on page load
+        updateNavigation();
+        loadSettings();
+
+        // Show welcome popup only once
+        if (!localStorage.getItem('welcomeShown')) {
+            setTimeout(() => {
+                const reason = prompt('Welcome to GameHub! Why are you visiting our website today?');
+                if (reason) {
+                    console.log('Visitor reason:', reason);
+                }
+                localStorage.setItem('welcomeShown', 'true');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Master - Create Delicious Recipes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .game-header {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .game-stats {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff9a56;
+        }
+
+        .game-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        .kitchen-area {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-display {
+            background: #fff3e0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #ff9a56;
+        }
+
+        .recipe-title {
+            font-size: 1.5rem;
+            color: #d84315;
+            margin-bottom: 1rem;
+        }
+
+        .ingredients-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .ingredient {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .ingredient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .ingredient.selected {
+            border-color: #ff9a56;
+            background: #fff3e0;
+        }
+
+        .ingredient-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cooking-station {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .station {
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #ddd;
+        }
+
+        .station:hover {
+            border-color: #ff9a56;
+            transform: scale(1.05);
+        }
+
+        .station-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff9a56, #ff6b35);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .recipe-book {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .recipe-item:hover {
+            background: #fff3e0;
+        }
+
+        .recipe-item.active {
+            background: #ff9a56;
+            color: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-cook {
+            background: linear-gradient(45deg, #4caf50, #45a049);
+            color: white;
+        }
+
+        .btn-cook:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-reset {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            color: white;
+        }
+
+        .btn-reset:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .game-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cooking-station {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .ingredients-list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-btn" onclick="window.location.href='../index.html'">← Back to GameHub</button>
+    <header class="game-header">
+        <div class="game-title">
+            <span>👨‍🍳</span>
+            <span>Cooking Master</span>
+        </div>
+        <div class="game-stats">
+            <div class="stat">
+                <div class="stat-value" id="score">0</div>
+                <div>Score</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="level">1</div>
+                <div>Level</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="timer">60</div>
+                <div>Time</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="game-container">
+        <main class="kitchen-area">
+            <div class="recipe-display">
+                <h2 class="recipe-title" id="current-recipe">Classic Burger</h2>
+                <p>Select ingredients and cook to create this delicious recipe!</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="recipe-progress"></div>
+                </div>
+            </div>
+
+            <h3>🥘 Ingredients</h3>
+            <div class="ingredients-list">
+                <div class="ingredient" data-ingredient="meat">
+                    <div class="ingredient-icon">🥩</div>
+                    <div>Beef Patty</div>
+                </div>
+                <div class="ingredient" data-ingredient="bun">
+                    <div class="ingredient-icon">🍞</div>
+                    <div>Burger Bun</div>
+                </div>
+                <div class="ingredient" data-ingredient="cheese">
+                    <div class="ingredient-icon">🧀</div>
+                    <div>Cheese</div>
+                </div>
+                <div class="ingredient" data-ingredient="lettuce">
+                    <div class="ingredient-icon">🥬</div>
+                    <div>Lettuce</div>
+                </div>
+                <div class="ingredient" data-ingredient="tomato">
+                    <div class="ingredient-icon">🍅</div>
+                    <div>Tomato</div>
+                </div>
+                <div class="ingredient" data-ingredient="onion">
+                    <div class="ingredient-icon">🧅</div>
+                    <div>Onion</div>
+                </div>
+            </div>
+
+            <h3>🔥 Cooking Stations</h3>
+            <div class="cooking-station">
+                <div class="station" data-station="grill">
+                    <div class="station-icon">🔥</div>
+                    <div>Grill</div>
+                </div>
+                <div class="station" data-station="fryer">
+                    <div class="station-icon">🍳</div>
+                    <div>Fryer</div>
+                </div>
+                <div class="station" data-station="prep">
+                    <div class="station-icon">🔪</div>
+                    <div>Prep Station</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-cook" onclick="cookRecipe()">Cook Recipe</button>
+                <button class="btn btn-reset" onclick="resetGame()">Reset</button>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="recipe-book">
+                <h3>📖 Recipe Book</h3>
+                <div class="recipe-item active" data-recipe="burger">
+                    <span>🍔</span>
+                    <div>
+                        <div>Classic Burger</div>
+                        <small>Beef, Bun, Cheese</small>
+                    </div>
+                </div>
+                <div class="recipe-item" data-recipe="pizza">
+                    <span>🍕</span>
+                    <div>
+                        <div>Margherita Pizza</div>
+                        <small>Dough, Cheese, Tomato</small>
+                    </div>
+                </div>
+                <div class="recipe-item" data-recipe="pasta">
+                    <span>🍝</span>
+                    <div>
+                        <div>Spaghetti</div>
+                        <small>Pasta, Sauce, Cheese</small>
+                    </div>
+                </div>
+                <div class="recipe-item" data-recipe="salad">
+                    <span>🥗</span>
+                    <div>
+                        <div>Fresh Salad</div>
+                        <small>Lettuce, Tomato, Onion</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        let selectedIngredients = [];
+        let currentRecipe = 'burger';
+        let score = 0;
+        let level = 1;
+        let timeLeft = 60;
+        let gameTimer;
+
+        const recipes = {
+            burger: { name: 'Classic Burger', ingredients: ['meat', 'bun', 'cheese'], icon: '🍔' },
+            pizza: { name: 'Margherita Pizza', ingredients: ['dough', 'cheese', 'tomato'], icon: '🍕' },
+            pasta: { name: 'Spaghetti', ingredients: ['pasta', 'sauce', 'cheese'], icon: '🍝' },
+            salad: { name: 'Fresh Salad', ingredients: ['lettuce', 'tomato', 'onion'], icon: '🥗' }
+        };
+
+        // Initialize game
+        function initGame() {
+            startTimer();
+            updateDisplay();
+        }
+
+        // Timer function
+        function startTimer() {
+            gameTimer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        // Ingredient selection
+        document.querySelectorAll('.ingredient').forEach(ingredient => {
+            ingredient.addEventListener('click', () => {
+                const ingredientType = ingredient.dataset.ingredient;
+                if (selectedIngredients.includes(ingredientType)) {
+                    selectedIngredients = selectedIngredients.filter(i => i !== ingredientType);
+                    ingredient.classList.remove('selected');
+                } else {
+                    selectedIngredients.push(ingredientType);
+                    ingredient.classList.add('selected');
+                }
+                updateProgress();
+            });
+        });
+
+        // Recipe selection
+        document.querySelectorAll('.recipe-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.recipe-item').forEach(r => r.classList.remove('active'));
+                item.classList.add('active');
+                currentRecipe = item.dataset.recipe;
+                document.getElementById('current-recipe').textContent = recipes[currentRecipe].name;
+                resetIngredients();
+            });
+        });
+
+        // Update progress bar
+        function updateProgress() {
+            const recipe = recipes[currentRecipe];
+            const correctIngredients = selectedIngredients.filter(ing => recipe.ingredients.includes(ing));
+            const progress = (correctIngredients.length / recipe.ingredients.length) * 100;
+            document.getElementById('recipe-progress').style.width = progress + '%';
+        }
+
+        // Cook recipe
+        function cookRecipe() {
+            const recipe = recipes[currentRecipe];
+            const correctIngredients = selectedIngredients.filter(ing => recipe.ingredients.includes(ing));
+            
+            if (correctIngredients.length === recipe.ingredients.length && selectedIngredients.length === recipe.ingredients.length) {
+                score += 100 * level;
+                alert(`Perfect! You created a delicious ${recipe.name}! +${100 * level} points`);
+                nextLevel();
+            } else {
+                alert('Recipe incomplete or wrong ingredients! Try again.');
+            }
+            
+            resetIngredients();
+            updateDisplay();
+        }
+
+        // Reset ingredients
+        function resetIngredients() {
+            selectedIngredients = [];
+            document.querySelectorAll('.ingredient').forEach(ing => ing.classList.remove('selected'));
+            document.getElementById('recipe-progress').style.width = '0%';
+        }
+
+        // Next level
+        function nextLevel() {
+            level++;
+            timeLeft += 30;
+            resetIngredients();
+        }
+
+        // Reset game
+        function resetGame() {
+            score = 0;
+            level = 1;
+            timeLeft = 60;
+            resetIngredients();
+            updateDisplay();
+        }
+
+        // Update display
+        function updateDisplay() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('level').textContent = level;
+        }
+
+        // End game
+        function endGame() {
+            clearInterval(gameTimer);
+            alert(`Game Over! Final Score: ${score}`);
+            resetGame();
+            startTimer();
+        }
+
+        // Start the game
+        initGame();
+    </script>
+<script src="../js/navigation.js"></script></body>
+</html>
