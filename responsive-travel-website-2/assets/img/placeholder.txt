@@ -1,0 +1,16 @@
+This folder contains placeholder images for the travel website.
+Replace these with actual travel images:
+
+- home-bg.jpg (Hero background)
+- home-trees.jpg (Croatia card)
+- home-lake.jpg (Iceland card)  
+- home-mountain.jpg (Italy card)
+- home-beach.jpg (Spain card)
+- about-beach.jpg (About section)
+- popular-mountain.jpg (Logan Mountain)
+- popular-forest.jpg (Spike Forest)
+- popular-lake.jpg (Garda Lake)
+- explore-beach.jpg (Explore background)
+- explore-perfil.png (User profile)
+- join-island.jpg (Newsletter section)
+- favicon.png (Website icon)
